@@ -1,9 +1,12 @@
 [submodule "nuxt"]
 	path = nuxt
 	url = git@github.com:Alexandr2901/nuxt.git
+	branch = main
 [submodule "lumen_auth"]
 	path = lumen_auth
 	url = git@github.com:Alexandr2901/lumen_auth.git
+	branch = main
 [submodule "lumen_main"]
 	path = lumen_main
 	url = git@github.com:Alexandr2901/lumen_main.git
+	branch = main
