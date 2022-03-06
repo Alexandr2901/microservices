@@ -17,7 +17,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - .:/var/www/html
+#      - ./lumen_main/.:/var/www/
       - ./lumen_main/.:/src
     build: ./lumen_main/.
     command: php -S 0.0.0.0:8000 -t public
@@ -81,7 +81,7 @@ services:
       - redis-auth
   pgsql-auth:
     #      container_name: auth-postgres
-    image: 'postgres:latest'
+    image: 'postgres:14.2-alpine'
     ports:
       - '${FORWARD_DB_PORT:-5433}:5432'
     environment:
@@ -98,7 +98,8 @@ services:
       retries: 3
       timeout: 5s
   redis-auth:
-    #      container_name: auth-redis
+#    container_name: auth-redis
+#    image: 'redis:alpine3.15'
     image: 'redis:alpine'
     ports:
       - '${FORWARD_REDIS_PORT:-6380}:6379'
@@ -110,6 +111,15 @@ services:
       test: [ "CMD", "redis-cli", "ping" ]
       retries: 3
       timeout: 5s
+  api-gateway:
+#    container_name: api-gateway2
+    volumes:
+      - '${PWD}/api-gateway:/etc/krakend/'
+    image: 'devopsfaith/krakend'
+    ports:
+       - '8080:8080'
+    networks:
+      - main
 networks:
   main:
     driver: bridge
