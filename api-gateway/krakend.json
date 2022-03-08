@@ -9,11 +9,11 @@
     {
       "endpoint": "/api/auth/set-token",
       "method": "POST",
-      "output_encoding": "json",
+      "output_encoding": "no-op",
       "backend": [
         {
           "url_pattern": "/api/auth/set-token",
-          "encoding": "string",
+          "encoding": "no-op",
           "method": "POST",
           "extra_config": {},
           "host": [
